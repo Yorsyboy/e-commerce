@@ -1,6 +1,16 @@
 import data from "../src/utlis/data";
-import { Button, Card, CardActionArea, CardActions, CardContent, CardMedia, Grid, Typography } from "@mui/material";
+import {
+  Button,
+  Card,
+  CardActionArea,
+  CardActions,
+  CardContent,
+  CardMedia,
+  Grid,
+  Typography,
+} from "@mui/material";
 import React from "react";
+import NextLink from "next/link";
 
 export default function HomePage() {
   return (
@@ -10,24 +20,22 @@ export default function HomePage() {
         {data.products.map((product) => (
           <Grid item md={4} key={product.name}>
             <Card>
-              <CardActionArea>
-                <CardMedia
-                  component="img"
-                  image={product.image}
-                  title={product.name}
-                />
-                <CardContent>
-                    <Typography>
-                        {product.name}
-                    </Typography>
-                </CardContent>
-              </CardActionArea>
+              <NextLink href={`/product/${product.slug}`} passHref>
+                <CardActionArea>
+                  <CardMedia
+                    component="img"
+                    image={product.image}
+                    title={product.name}
+                  />
+                  <CardContent>
+                    <Typography>{product.name}</Typography>
+                  </CardContent>
+                </CardActionArea>
+              </NextLink>
               <CardActions>
-                <Typography>
-                    ${product.price}
-                </Typography>
+                <Typography>${product.price}</Typography>
                 <Button size="small" color="primary">
-                    Add to cart
+                  Add to cart
                 </Button>
               </CardActions>
             </Card>

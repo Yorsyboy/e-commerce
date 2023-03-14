@@ -1,11 +1,14 @@
 import { AppBar, Container, Link, Toolbar, Typography } from "@mui/material";
 import Head from "next/head";
 
-export default function Layout({ children }) {
+export default function Layout({ title, description, children }) {
   return (
     <div>
       <Head>
-        <title>Ecommerce</title>
+        {/* { If title is true, then use the title, otherwise use 'Ecommerce'} */}
+        <title>{title ? `${title} - Ecommerce` : 'Ecommerce'}</title>
+        {/**For SEO */}
+        {description && <meta name="description" content={description} />}
       </Head>
 
       <AppBar position="static" className="bg-[#283040]">
@@ -25,7 +28,7 @@ export default function Layout({ children }) {
         </Toolbar>
       </AppBar>
       <Container className="min-h-[80vh]">{children}</Container>
-      <footer className="text-center">
+      <footer className="text-center mt-2">
         <Typography>All rights reserved</Typography>
       </footer>
     </div>
